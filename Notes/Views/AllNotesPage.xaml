@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Notes.Views.AllNotesPage"
+             Title="Click + and add your notes"
+             
+             BackgroundColor="MediumVioletRed"
+             >
+    <!-- Add an item to the toolbar -->
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add" Clicked="Add_Clicked" IconImageSource="{FontImage Glyph='+', Color=Yellow, Size=40}" />
+    </ContentPage.ToolbarItems>
+
+    <!-- Display notes in a list -->
+    <CollectionView x:Name="notesCollection"
+                        ItemsSource="{Binding Notes}"
+                        Margin="5"
+                        
+                        SelectionMode="Single"
+                    
+                        SelectionChanged="notesCollection_SelectionChanged"
+                        BackgroundColor="DarkCyan">
+
+        <!-- Designate how the collection of items are laid out -->
+        <CollectionView.ItemsLayout>
+            <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+        </CollectionView.ItemsLayout>
+
+        <!-- Define the appearance of each item in the list -->
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <StackLayout>
+                    <Label Text="{Binding Text}" FontSize="25" TextColor="Violet" FontFamily="Kalam-Regular"/>
+                    <Label Text="{Binding Date}" FontSize="14" TextColor="White" FontFamily="IndieFlower-Regular"/>
+                </StackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+</ContentPage>
